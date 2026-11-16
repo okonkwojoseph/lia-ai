@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://swwwupkofzynoypqwobz.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>Lia Ai: turn your social handle into a website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&display=swap">
+<style>
+:root{--red:#D62828;--red-d:#A81818;--red-t:#FBE9E9;--ink:#1E1E22;--bg:#F6F4F3;--card:#fff;--line:#E4E0DE;--text:#1E1E22;--muted:#6B6663;--side:#1E1E22;--side-t:#F3F0EF;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141416;--card:#1E1E22;--line:#33333A;--text:#F3F0EF;--muted:#A39E9B;--side:#0D0D0F;--red-t:#3A1717;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141416;--card:#1E1E22;--line:#33333A;--text:#F3F0EF;--muted:#A39E9B;--side:#0D0D0F;--red-t:#3A1717;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--red)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.app.pub{grid-template-columns:1fr}.app.pub aside{display:none}.app.pub main{margin:0 auto}
+aside{background:var(--side);color:var(--side-t);padding:22px 14px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.4rem;padding:0 10px 22px;text-decoration:none;color:inherit}
+.brand i{width:34px;height:34px;border-radius:10px;background:var(--red);display:grid;place-items:center;font-style:normal;font-size:1.1rem;color:#fff}
+nav a{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;color:inherit;text-decoration:none;font-weight:500;margin-bottom:2px}
+nav a span.e{width:30px;text-align:center;font-size:1.15rem}
+nav a:hover{background:rgba(255,255,255,.08)}
+nav a.on{background:var(--red);font-weight:700;color:#fff}
+.side-note{margin:22px 10px 0;font-size:.85rem;opacity:.7}
+main{padding:34px clamp(18px,4vw,54px) 60px;max-width:1000px;width:100%}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.15rem;margin:0 0 10px}
+.lead{color:var(--muted);margin:0 0 26px;max-width:60ch;font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.tile{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--red);transform:translateY(-2px)}
+.tile .e{font-size:1.8rem;display:block;margin-bottom:10px}
+.tile b{display:block;font-size:1.15rem;margin-bottom:4px}
+.tile p{margin:0;color:var(--muted);font-size:.95rem}
+.tile.hero{grid-column:1/-1;background:var(--ink);color:#fff;border:0;padding:30px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.tile.hero p{color:#CFCAC7;max-width:48ch}
+.tile.hero b{font-size:1.6rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:18px}
+.step{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.step .n{width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+label.f{display:block;font-weight:600;margin:0 0 6px}
+input[type=text],input[type=url],input[type=email],input[type=password],select,textarea{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg)}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--red);outline:none}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>*{flex:1 1 200px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.chip{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:500}
+.chip[aria-pressed=true]{background:var(--red);border-color:var(--red);color:#fff}
+.btn{background:var(--red);color:#fff;border:0;border-radius:12px;padding:14px 24px;font-weight:700;cursor:pointer;font-size:1rem}
+.btn:hover{background:var(--red-d)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.alt{background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--text)}
+.btn.sm{padding:8px 14px;font-size:.9rem}
+.hint{color:var(--muted);font-size:.9rem;margin:6px 0 0}
+.note{background:var(--red-t);border-left:4px solid var(--red);padding:12px 14px;border-radius:8px;margin:14px 0;font-size:.95rem}
+.check{display:flex;gap:10px;align-items:flex-start;margin:12px 0;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--red);margin-top:2px;flex:none}
+.out{white-space:pre-wrap;background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;padding:16px;margin:14px 0}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:14px 0}
+.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .2s}
+.item{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.item:last-child{border-bottom:0}
+.item b{display:block}
+.auth{max-width:440px;margin:6vh auto 0}
+.site{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;color:#1E1E22}
+.site .top{display:flex;justify-content:space-between;padding:14px 20px;font-weight:700;border-bottom:1px solid #eee}
+.site .hh{padding:44px 24px;text-align:center}
+.site .av{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:2rem;font-weight:800;color:#fff}
+.site h3{margin:0 0 6px;font-size:1.7rem}
+.site .g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 24px 24px}
+.site .g div{aspect-ratio:1;border-radius:10px}
+.site .ft{padding:14px 24px;background:#f3f1f0;font-size:.85rem;text-align:center}
+.t-red .av,.t-red .cta,.t-red .g div{background:#D62828}.t-red .cta{color:#fff}
+.t-ink .av,.t-ink .cta,.t-ink .g div{background:#1E1E22}.t-ink .cta{color:#fff}
+.t-ink .g div:nth-child(odd){background:#D62828}
+.t-soft .av,.t-soft .cta{background:#D62828}.t-soft .cta{color:#fff}.t-soft .g div{background:#FBE9E9}
+.cta{display:inline-block;padding:11px 22px;border-radius:99px;font-weight:700;margin-top:10px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;max-width:90vw}
+.toast.show{opacity:1}
+@media (max-width:820px){
+.app{grid-template-columns:1fr}
+aside{position:sticky;top:0;height:auto;z-index:5;padding:10px 10px 6px;padding-top:calc(10px + env(safe-area-inset-top,0px))}
+.brand{padding:0 6px 8px}
+nav{display:flex;overflow-x:auto;gap:4px}
+nav a{flex:none;flex-direction:column;gap:0;padding:8px 12px;font-size:.78rem;margin:0}
+.side-note{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+<a class="brand" href="#home"><i>L</i>Lia Ai</a>
+<nav id="nav"></nav>
+<p class="side-note">Your work is saved to your account. Voice cloning, studio voices and file conversion are still being connected.</p>
+</aside>
+<main id="main"></main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+var sb=supabase.createClient("https://swwwupkofzynoypqwobz.supabase.co","sb_publishable_YLOqZDNMTEdpFB3srRMyzQ_GiB2_mS-");
+var S={user:null,profile:null};
+var TOOLS=[
+{id:"website",e:"🌐",n:"Make my website",d:"Turn your Instagram, TikTok or Facebook page into a real website."},
+{id:"prompts",e:"✨",n:"Write a prompt",d:"Describe an idea. Get a ready-to-use image or video prompt."},
+{id:"voiceover",e:"🎙️",n:"Voice over",d:"Type your script and hear it read out loud."},
+{id:"clone",e:"🧬",n:"Clone my voice",d:"Make a digital copy of your own voice from a short recording."},
+{id:"pdf",e:"📄",n:"PDF converter",d:"Change PDFs to Word, images or text, and back again."},
+{id:"saver",e:"⬇️",n:"Save a video",d:"Paste a link to a video you own and save a copy."}
+];
+var $=function(s,r){return(r||document).querySelector(s)};
+var esc=function(s){var d=document.createElement("div");d.textContent=s==null?"":String(s);return d.innerHTML};
+function toast(m){var t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(function(){t.classList.remove("show")},3200)}
+function chips(name,list,first){return '<div class="chips" data-chips="'+name+'">'+list.map(function(x,i){return '<button type="button" class="chip" aria-pressed="'+(i===(first||0))+'">'+x+'</button>'}).join("")+'</div>'}
+function val(name){var c=$('[data-chips="'+name+'"] [aria-pressed=true]');return c?c.textContent:""}
+function step(n,t){return '<div class="step"><span class="n">'+n+'</span><h2 style="margin:0">'+t+'</h2></div>'}
+function head(t){return '<h1>'+t.n+'</h1><p class="lead">'+t.d+'</p>'}
+function T(id){return TOOLS.filter(function(t){return t.id===id})[0]}
+function go(h){if(location.hash==="#"+h)route();else location.hash=h}
+function slugify(s){return String(s).toLowerCase().replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"").slice(0,30)}
+function siteURL(slug){return location.origin+location.pathname+"#s-"+slug}
+function siteHTML(c,foot){var cl=c.look==="Dark"?"t-ink":c.look==="Soft"?"t-soft":"t-red",h=String(c.handle||"");
+return '<div class="site '+cl+'"><div class="top"><span>'+esc(h)+'</span><span>About · Gallery · Contact</span></div><div class="hh"><div class="av">'+esc(h.charAt(0).toUpperCase())+'</div><h3>'+esc(h)+'</h3><div>'+esc(c.bio)+'</div><span class="cta">'+esc(c.cta)+'</span></div><div class="g"><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="ft">'+esc(foot)+'</div></div>'}
+async function loadProfile(){try{var r=await sb.from("profiles").select("full_name,plan").eq("id",S.user.id).maybeSingle();S.profile=r.data||{plan:"free"}}catch(e){S.profile={plan:"free"}}}
+
+var V={};
+V.auth=function(){
+return '<div class="auth"><a class="brand" href="#auth" style="padding-left:0"><i>L</i>Lia Ai</a><h1>Welcome</h1><p class="lead">Sign in to build and save your websites.</p><div class="panel">'+chips("mode",["Sign in","Create account"])+
+'<div id="nmrow" style="display:none;margin-top:12px"><label class="f" for="nm">Your name</label><input type="text" id="nm" maxlength="80" autocomplete="name"></div>'+
+'<div style="margin-top:12px"><label class="f" for="em">Email</label><input type="email" id="em" autocomplete="email"></div>'+
+'<div style="margin-top:12px"><label class="f" for="pw">Password</label><input type="password" id="pw" autocomplete="current-password"><p class="hint">At least 8 characters.</p></div>'+
+'<p class="hint" id="am" role="alert" style="color:var(--red);min-height:1.4em"></p><button class="btn" id="go" style="width:100%">Sign in</button></div></div>'};
+V.auth.init=function(){
+function msg(t,ok){var a=$("#am");a.textContent=t;a.style.color=ok?"var(--muted)":"var(--red)"}
+$('[data-chips="mode"]').addEventListener("click",function(){setTimeout(function(){var c=val("mode")==="Create account";$("#nmrow").style.display=c?"block":"none";$("#go").textContent=c?"Create my account":"Sign in";$("#pw").autocomplete=c?"new-password":"current-password"},0)});
+$("#go").onclick=async function(){
+var b=$("#go"),email=$("#em").value.trim(),pw=$("#pw").value,name=$("#nm").value.trim(),create=val("mode")==="Create account";
+if(!/^\S+@\S+\.\S+$/.test(email)){msg("Enter a valid email address.");return}
+if(pw.length<8){msg("Your password needs at least 8 characters.");return}
+b.disabled=true;msg("");
+try{
+if(create){var r=await sb.auth.signUp({email:email,password:pw,options:{data:{full_name:name}}});if(r.error)throw r.error;
+if(r.data.session){S.user=r.data.user;await loadProfile();go("home")}else msg("Almost done. Open the email we sent you, tap the confirmation link, then sign in.",1)}
+else{var q=await sb.auth.signInWithPassword({email:email,password:pw});if(q.error)throw q.error;S.user=q.data.user;await loadProfile();go("home")}
+}catch(e){msg(e.message||"Something went wrong. Try again.")}finally{b.disabled=false}}};
+
+V.home=function(){
+return '<h1>What do you want to do today?</h1><p class="lead">Pick one box below. Each tool walks you through it step by step.</p><div class="grid">'+
+'<a class="tile hero" href="#website"><div><b>Turn your social page into a website</b><p>Type your handle, pick a look, and get a professional site in about a minute.</p></div><span class="btn">Start here</span></a>'+
+TOOLS.slice(1).map(function(t){return '<a class="tile" href="#'+t.id+'"><span class="e">'+t.e+'</span><b>'+t.n+'</b><p>'+t.d+'</p></a>'}).join("")+'</div>'};
+
+V.website=function(){
+return head(T("website"))+'<div class="panel">'+step(1,"Where is your page?")+chips("plat",["Instagram","TikTok","Facebook"])+
+'<div style="height:14px"></div>'+step(2,"What’s your handle?")+'<input type="text" id="handle" maxlength="60" placeholder="@yourname" autocomplete="off"><p class="hint">Just the name, like @maya.bakes</p>'+
+'<div style="height:14px"></div>'+step(3,"Tell people about you")+'<div class="row"><div><label class="f" for="bio">Short bio</label><input type="text" id="bio" maxlength="200" placeholder="Homemade cakes in Lagos"></div><div><label class="f" for="cta">Button text</label><input type="text" id="cta" maxlength="40" placeholder="Order now"></div></div>'+
+'<div style="height:14px"></div>'+step(4,"Pick a look")+chips("look",["Bold red","Dark","Soft"])+
+'<div style="height:18px"></div><button class="btn" id="go">Build my website</button></div><div id="res"></div>'};
+V.website.init=function(){
+$("#go").onclick=function(){
+var h=$("#handle").value.trim().replace(/^@/,"");if(!h){toast("Type your handle first");$("#handle").focus();return}
+var cfg={handle:h,bio:$("#bio").value.trim()||"Welcome to my page",cta:$("#cta").value.trim()||"Contact me",look:val("look"),platform:val("plat")};
+$("#res").innerHTML='<div class="panel"><b>Building your website…</b><div class="bar"><i id="pb"></i></div></div>';
+var w=0,iv=setInterval(function(){w+=14;$("#pb").style.width=Math.min(w,100)+"%";if(w>=100){clearInterval(iv);done()}},180);
+function done(){
+$("#res").innerHTML='<h2>Your website is ready</h2>'+siteHTML(cfg,"Photos will come from your "+cfg.platform+" page")+'<div class="row" style="margin-top:14px"><button class="btn" id="pub">Publish website</button><button class="btn ghost" id="sv">Save to My projects</button></div><div id="live"></div>';
+$("#sv").onclick=async function(){var r=await sb.from("projects").insert({kind:"website",title:cfg.handle.slice(0,120),data:cfg});toast(r.error?r.error.message:"Saved to My projects")};
+$("#pub").onclick=async function(){var slug=slugify(cfg.handle);if(slug.length<3){toast("Use a handle with at least 3 letters or numbers");return}
+var r=await sb.from("sites").upsert({slug:slug,config:cfg,published:true},{onConflict:"slug"});
+if(r.error){toast(/row-level|policy|permission/i.test(r.error.message)?"That address is taken. Change the handle and try again.":r.error.message);return}
+var u=siteURL(slug);$("#live").innerHTML='<div class="note">Your website is live: <a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u)+'</a></div>'}}}};
+
+V.prompts=function(){
+return head(T("prompts"))+'<div class="panel">'+step(1,"What do you need?")+chips("kind",["Image","Video"])+
+'<div style="height:14px"></div>'+step(2,"Describe your idea in plain words")+'<textarea id="idea" maxlength="1000" placeholder="A woman selling fresh bread at a busy market"></textarea>'+
+'<div style="height:14px"></div>'+step(3,"Choose a style")+chips("style",["Realistic photo","Cartoon","Cinematic","Product ad","Anime"])+
+'<div style="height:10px"></div><label class="f" for="mood">Mood</label><select id="mood"><option>Warm and happy</option><option>Dramatic</option><option>Calm and clean</option><option>Fun and colorful</option></select>'+
+'<div style="height:18px"></div><button class="btn" id="go">Write my prompt</button></div><div id="res"></div>'};
+V.prompts.init=function(){
+$("#go").onclick=function(){
+var i=$("#idea").value.trim();if(!i){toast("Describe your idea first");$("#idea").focus();return}
+var k=val("kind"),s=val("style"),m=$("#mood").value.toLowerCase(),t;
+if(k==="Image")t=i+". "+s+" style, "+m+" mood, detailed, sharp focus, natural lighting, balanced composition, high resolution, 4:5 ratio.";
+else t=i+". "+s+" style, "+m+" mood. Shot with a smooth camera move, slow push-in, natural motion, soft lighting, 24 fps, 10 seconds, 16:9, no text on screen.";
+$("#res").innerHTML='<div class="panel"><h2>Your '+k.toLowerCase()+' prompt</h2><div class="out" id="pt">'+esc(t)+'</div><div class="row"><button class="btn" id="cp">Copy prompt</button><button class="btn ghost" id="sv">Save to My projects</button><button class="btn ghost" id="again">Try another version</button></div></div>';
+$("#cp").onclick=function(){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast("Copied")},function(){toast("Press and hold the text to copy")})};
+$("#sv").onclick=async function(){var r=await sb.from("projects").insert({kind:"prompt",title:i.slice(0,120),data:{text:t,type:k}});toast(r.error?r.error.message:"Saved to My projects")};
+$("#again").onclick=function(){$("#go").click()}}};
+
+V.voiceover=function(){
+return head(T("voiceover"))+'<div class="panel">'+step(1,"Type or paste your script")+'<textarea id="txt">Welcome to my store. Everything is made fresh every morning.</textarea>'+
+'<div style="height:14px"></div>'+step(2,"Choose a voice and speed")+'<div class="row"><div><label class="f" for="voice">Voice</label><select id="voice"></select></div><div><label class="f" for="rate">Speed</label><input type="range" id="rate" min="0.6" max="1.5" step="0.1" value="1" style="width:100%;accent-color:#D62828"></div></div>'+
+'<div style="height:18px"></div><div class="row"><button class="btn" id="play">▶ Play</button><button class="btn ghost" id="stop">Stop</button></div><p class="hint">This plays with your device’s built-in voices. Studio-quality voices and MP3 download are coming.</p></div>'};
+V.voiceover.init=function(){
+var ss=window.speechSynthesis,sel=$("#voice");
+function load(){if(!ss)return;var vs=ss.getVoices();sel.innerHTML=vs.length?vs.map(function(v,i){return '<option value="'+i+'">'+esc(v.name+" ("+v.lang+")")+'</option>'}).join(""):'<option>Default voice</option>'}
+load();if(ss)ss.onvoiceschanged=load;
+$("#play").onclick=function(){if(!ss){toast("Your browser can’t play voices");return}
+ss.cancel();var u=new SpeechSynthesisUtterance($("#txt").value),vs=ss.getVoices();if(vs[sel.value])u.voice=vs[sel.value];u.rate=+$("#rate").value;ss.speak(u)};
+$("#stop").onclick=function(){if(ss)ss.cancel()}};
+
+V.clone=function(){
+return head(T("clone"))+'<div class="panel">'+step(1,"Confirm it’s your voice")+'<label class="check"><input type="checkbox" id="ok"><span>This is my own voice, or the owner of the voice gave me clear permission to clone it.</span></label>'+
+'<div class="note">We only clone voices with permission. This protects you and the people around you.</div>'+
+'<div style="height:6px"></div>'+step(2,"Add a recording")+'<input type="file" id="file" accept="audio/*"><p class="hint">Speak clearly for 30 to 60 seconds, with no background noise.</p>'+
+'<div style="height:14px"></div>'+step(3,"Name your voice")+'<input type="text" id="vn" placeholder="My business voice">'+
+'<div style="height:18px"></div><button class="btn" id="go" disabled>Create my voice</button></div><div id="res"></div>'};
+V.clone.init=function(){
+function chk(){$("#go").disabled=!($("#ok").checked&&$("#file").files.length&&$("#vn").value.trim())}
+["#ok","#file","#vn"].forEach(function(s){$(s).oninput=chk;$(s).onchange=chk});
+$("#go").onclick=function(){$("#res").innerHTML='<div class="panel"><h2>Voice cloning is not switched on yet</h2><p>Nothing was uploaded. This tool needs a voice service connected to your account first, and we’ll show it here as soon as it’s ready.</p></div>'}};
+
+V.pdf=function(){
+return head(T("pdf"))+'<div class="panel">'+step(1,"Choose your file")+'<input type="file" id="file"><div style="height:14px"></div>'+step(2,"What should it become?")+chips("to",["Word","Image (JPG)","Text","PDF"])+
+'<div style="height:18px"></div><button class="btn" id="go">Convert</button><p class="hint" id="msg"></p></div>'};
+V.pdf.init=function(){
+$("#go").onclick=function(){if(!$("#file").files[0]){toast("Choose a file first");return}$("#msg").textContent="File conversion is not switched on yet. Your file was not uploaded."}};
+
+V.saver=function(){
+return head(T("saver"))+'<div class="panel">'+step(1,"Paste the video link")+'<input type="url" id="url" placeholder="https://">'+
+'<div style="height:14px"></div>'+step(2,"Confirm")+'<label class="check"><input type="checkbox" id="ok"><span>I made this video, or the owner said I can save it.</span></label>'+
+'<div class="note">Saving other people’s videos can break platform rules and copyright law, so this tool is for your own content.</div>'+
+'<button class="btn" id="go" disabled>Get my video</button></div><div id="res"></div>'};
+V.saver.init=function(){
+function chk(){$("#go").disabled=!($("#ok").checked&&/^https?:\/\/\S+/.test($("#url").value.trim()))}
+$("#ok").onchange=chk;$("#url").oninput=chk;
+$("#go").onclick=function(){$("#res").innerHTML='<div class="panel"><h2>Not switched on yet</h2><p>Saving your own videos is coming soon.</p></div>'}};
+
+V.mine=function(){return '<h1>My projects</h1><p class="lead">Everything you save and publish shows up here.</p><div class="panel" id="acct"></div><div class="panel" id="list"><p class="hint">Loading…</p></div>'};
+V.mine.init=async function(){
+var plan=(S.profile&&S.profile.plan)||"free",lim={free:10,pro:200,business:2000}[plan]||10;
+$("#acct").innerHTML='<div class="row" style="align-items:center"><div><b>'+esc(S.user.email)+'</b><p class="hint" style="margin:2px 0 0">'+esc(plan.charAt(0).toUpperCase()+plan.slice(1))+' plan · up to '+lim+' saved projects</p></div><div style="flex:0 0 auto;display:flex;gap:8px;flex-wrap:wrap"><button class="btn alt sm" id="up">Upgrade</button><button class="btn ghost sm" id="so">Sign out</button></div></div>';
+$("#up").onclick=function(){toast("Paid plans are coming soon")};
+$("#so").onclick=async function(){await sb.auth.signOut();S.user=null;S.profile=null;go("auth")};
+async function draw(){
+var a=await sb.from("projects").select("id,kind,title,created_at").order("created_at",{ascending:false}),b=await sb.from("sites").select("slug,published").eq("user_id",S.user.id).eq("published",true);
+if(a.error||b.error){$("#list").innerHTML='<p class="hint">Couldn’t load your projects. Refresh and try again.</p>';return}
+var h="";
+b.data.forEach(function(s){var u=siteURL(s.slug);h+='<div class="item"><div><b>🌐 Live: '+esc(s.slug)+'</b><a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u)+'</a></div><button class="btn ghost sm" data-unp="'+esc(s.slug)+'">Take offline</button></div>'});
+a.data.forEach(function(p){h+='<div class="item"><div><b>'+({website:"🌐",prompt:"✨",voiceover:"🎙️"}[p.kind]||"")+' '+esc(p.title)+'</b><span class="hint">Saved '+esc(new Date(p.created_at).toLocaleDateString())+'</span></div><button class="btn ghost sm" data-del="'+esc(p.id)+'">Delete</button></div>'});
+$("#list").innerHTML=h||'<p>Nothing saved yet. Make a website or write a prompt, then press Save.</p>'}
+$("#list").onclick=async function(e){var d=e.target.closest("[data-del]"),u=e.target.closest("[data-unp]");
+if(d){var r=await sb.from("projects").delete().eq("id",d.getAttribute("data-del"));toast(r.error?r.error.message:"Deleted");draw()}
+if(u){var r2=await sb.from("sites").update({published:false}).eq("slug",u.getAttribute("data-unp"));toast(r2.error?r2.error.message:"Website taken offline");draw()}};
+draw()};
+
+function nav(cur){$("#nav").innerHTML='<a href="#home" class="'+(cur==="home"?"on":"")+'"><span class="e">🏠</span>Home</a>'+TOOLS.map(function(t){return '<a href="#'+t.id+'" class="'+(cur===t.id?"on":"")+'"><span class="e">'+t.e+'</span>'+t.n+'</a>'}).join("")+'<a href="#mine" class="'+(cur==="mine"?"on":"")+'"><span class="e">📁</span>My projects</a>'}
+async function showSite(slug){
+var r=await sb.from("sites").select("config").eq("slug",slug).eq("published",true).maybeSingle();
+if(r.error||!r.data){$("#main").innerHTML='<h1>Website not found</h1><p class="lead">This address isn’t live. The owner may have taken it offline.</p>';return}
+var c=r.data.config||{};document.title=String(c.handle||"Website").slice(0,60);
+$("#main").innerHTML=siteHTML(c,"Made with Lia Ai")}
+function route(){
+var id=location.hash.slice(1),pub=false;
+if(window.speechSynthesis)speechSynthesis.cancel();
+if(id.indexOf("s-")===0){$(".app").classList.add("pub");$("#main").innerHTML='<p class="lead">Loading…</p>';showSite(id.slice(2).slice(0,30));return}
+if(!S.user){id="auth";pub=true}else if(!V[id]||id==="auth")id="home";
+$(".app").classList.toggle("pub",pub);
+$("#main").innerHTML=V[id]();nav(id);window.scrollTo(0,0);
+if(V[id].init)V[id].init()}
+document.addEventListener("click",function(e){var c=e.target.closest(".chip");if(!c)return;
+c.parentNode.querySelectorAll(".chip").forEach(function(x){x.setAttribute("aria-pressed",x===c)})});
+window.addEventListener("hashchange",route);
+(async function(){try{var r=await sb.auth.getSession();S.user=r.data.session?r.data.session.user:null;if(S.user)await loadProfile()}catch(e){}route()})();
+</script>
+</body>
+</html>
